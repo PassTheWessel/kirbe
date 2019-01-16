@@ -1,0 +1,34 @@
+{
+  "name": "kirbe",
+  "version": "0.0.1",
+  "description": "👻 A powerful and lightweight Node.js HTTP server library",
+  "main": "index.js",
+  "author": "Wessel \"wesselgame\" T <discord@go2it.eu>",
+  "license": "MIT",
+  "private": false,
+  "files": [
+    "index.js",
+    "model",
+    "LICENSE"
+  ],
+  "bugs": {
+    "url": "https://www.github.com/PassTheWessel/kirbe/issues"
+  },
+  "homepage": "https://www.github.com/PassTheWessel/kirbe#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://www.github.com/PassTheWessel/kirbe"
+  },
+  "keywords": [
+    "framework",
+    "fast",
+    "web",
+    "rest",
+    "restful",
+    "router",
+    "app",
+    "api",
+    "lightweight"
+  ],
+  "devDependencies": { "wumpfetch": "^0.0.4" }
+}
