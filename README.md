@@ -1,7 +1,7 @@
 <div align="center" >
   <br />
-  <p>
-    <img src="media/kirb.gif" /><h1 font-size="107px;">Kirbe</h1>
+  <p style="font-size:107px;">
+    <img src="media/kirb.gif" />Kirbe<
   </p>
   <br />
 </div>
