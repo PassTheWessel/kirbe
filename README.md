@@ -7,8 +7,8 @@
   <p>
     <a href="#"><img src="https://packagephobia.now.sh/badge?p=kirbe" alt="Install Size" /></a>
     <a href="https://discord.gg/SV7DAE9"><img src="https://discordapp.com/api/guilds/107131083958538240/embed.png" alt="Discord" /></a>
-    <a href="https://www.npmjs.com/package/wumpston"><img src="https://img.shields.io/npm/v/kirbe.svg?maxAge=3600" alt="NPM version" /></a>
-    <a href="https://www.npmjs.com/package/wumpston"><img src="https://img.shields.io/npm/dt/kirbe.svg?maxAge=3600" alt="NPM version" /></a>
+    <a href="https://www.npmjs.com/package/kirbe"><img src="https://img.shields.io/npm/v/kirbe.svg?maxAge=3600" alt="NPM version" /></a>
+    <a href="https://www.npmjs.com/package/kirbe"><img src="https://img.shields.io/npm/dt/kirbe.svg?maxAge=3600" alt="NPM version" /></a>
     <a href="https://www.patreon.com/wessel"><img src="https://img.shields.io/badge/donate-patreon-F96854.svg" alt="Patreon" /></a>
   </p>
   <p>
