@@ -1,4 +1,10 @@
-# ![Icon](media/kirb.gif "Dancing krib") Kirbe
+<div align="center">
+  <br />
+  <p>
+    <img src="media/kirb.gif" width="100%" />Kirbe
+  </p>
+  <br />
+</div>
 
 > A lightweight and fast Node.js HTTP server library
 
