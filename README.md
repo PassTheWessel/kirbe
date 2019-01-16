@@ -22,7 +22,7 @@ $ npm i kirbe # Install w/ NPM
 const kirbe = require( 'kirbe' ); // Define kirbe
 const app = new kirbe(); // Make your kirbe client
 
-app.route( '/bear', 'GET' ( req, res ) => res.status( 200 ).body({ 'bear': 'cop' }) );
+app.route( '/bear', 'GET', ( req, res ) => res.status( 200 ).body({ 'bear': 'cop' }) );
 app.route( ( req, res ) => res.status( 404 ).body( 'Error: Content not found!' ).end() );
 app.get( '/kirb', ( req, res ) => {
   res.writeHead( 201, { 'test': 'hi' });
