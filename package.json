@@ -1,6 +1,6 @@
 {
   "name": "kirbe",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "👻 A powerful and lightweight Node.js HTTP server library",
   "main": "index.js",
   "author": "Wessel \"wesselgame\" T <discord@go2it.eu>",
@@ -9,6 +9,7 @@
   "files": [
     "index.js",
     "model",
+    "extensions",
     "LICENSE"
   ],
   "bugs": {
