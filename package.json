@@ -1,6 +1,6 @@
 {
   "name": "kirbe",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "👻 A powerful and lightweight Node.js HTTP server library",
   "main": "index.js",
   "author": "Wessel \"wesselgame\" T <discord@go2it.eu>",
@@ -30,5 +30,7 @@
     "api",
     "lightweight"
   ],
-  "devDependencies": { "wumpfetch": "^0.0.4" }
+  "devDependencies": {
+    "wumpfetch": "^0.0.4"
+  }
 }
