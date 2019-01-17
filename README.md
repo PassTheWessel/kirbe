@@ -60,6 +60,6 @@ app.use( kirbe.static( path.join( __dirname, 'static' ) ) );
 ```
 
 ### Why use kirbe?
-Kirbe is a lightweight and fast HTTP server library, especially comparing to express which is around 1mb. If you want any featuers that aren't inside of Kirbe yet, you can open an issue or pull request.
+Kirbe is a lightweight and fast HTTP server library, especially comparing to express and connect which are around 1mb in size with multiple dependencies. If you want any features that aren't inside of Kirbe yet, you can open an issue or pull request.
 
 You can join [https://discord.gg/SV7DAE9](https://discord.gg/SV7DAE9) if you need any support using kirbe!
