@@ -24,9 +24,10 @@ module.exports = class KirbeServer {
   use( middleware ) {
     const o = typeof middleware === 'object';
     const m = {
-      name    : this.stack.size,
-      args    : o && typeof Array.isArray( o.args ) ? o.args : [],
-      function: o && typeof o.function === 'function' ? o.function : middleware
+      name       : this.stack.size,
+      args       : o && typeof Array.isArray( o.args ) ? o.args : [],
+      function   : o && typeof o.function === 'function' ? o.function : middleware,
+      constructor: !!( o && o.constructor )
     };
 
     this.stack.set( m.name, m );
@@ -70,7 +71,8 @@ module.exports = class KirbeServer {
         if( this.stack.size >= currentMiddleware +1 ) {
           currentMiddleware++;
           const middleware = this.stack.get( currentMiddleware - 1 );
-          middleware.function( request, response, renderMiddleware );
+          if ( middleware.constructor ) new middleware.function( request, response, renderMiddleware );
+          else middleware.function( request, response, renderMiddleware );
         }else start();
       };
       renderMiddleware();
