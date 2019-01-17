@@ -1,6 +1,6 @@
 {
   "name": "kirbe",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "👻 A powerful and lightweight Node.js HTTP server library",
   "main": "index.js",
   "author": "Wessel \"wesselgame\" T <discord@go2it.eu>",
