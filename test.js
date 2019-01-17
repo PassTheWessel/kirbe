@@ -1,9 +1,9 @@
 const w     = require( 'wumpfetch' );
 const Kirbe = require( './index' );
 
-const app = new Kirbe();
+const app = new Kirbe.Server();
 
-app.use( ( req, res, next ) => req.url === '/testExtension' ? res.status( 200 ).end() : next() );
+app.use( ( req, res, next ) => req.url === '/middleware' ? res.status( 200 ).end() : next() );
 
 app.post( '/parse', ( req, res ) => res.body({ 'sent': req.json() }).end() );
 app.route( 'GET', '/statusMsg', ( req, res ) => res.status( 200, 'kirbe won' ).end() );

@@ -1,4 +1,4 @@
 const kirbe = exports;
 
-module.exports = require( './model/KirbeServer' );
-kirbe.static = require( './extensions/static' );
+kirbe.Server = require( './model/KirbeServer' );
+kirbe.static = require( './model/middleware/static' );

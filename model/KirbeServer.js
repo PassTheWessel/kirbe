@@ -4,6 +4,8 @@ const { createServer } = require( 'http' );
 const KirbeRequest  = require( join( __dirname, 'KirbeRequest.js' ) );
 const KirbeResponse = require( join( __dirname, 'KirbeResponse.js' ) );
 
+const Collection = require( '../fake_node_modules/Collection' );
+
 const methods = [ 'GET', 'HEAD', 'POST', 'PUT', 'DELETE', 'CONNECT', 'OPTIONS', 'TRACE', 'PATCH' ];
 const isUrl   = ( c ) => (typeof c === 'string' && !methods.includes( c ) ) || c instanceof RegExp;
 
@@ -12,13 +14,23 @@ module.exports = class KirbeServer {
     this.internalServer  = createServer( ( req, res ) => this.handler.apply( this, [ req, res ] ) );
     this.externalHandler = ( req, res ) => this.handler( req, res );
 
+    this.stack      = new Collection();
     this.routes     = [];
     this.extensions = [];
 
     methods.forEach( ( v ) => this[ v.toLowerCase() ] = ( a, b ) => this.route( v, a, b ) );
   }
 
-  use( extension ) { this.extensions.push( extension ); }
+  use( middleware ) {
+    const o = typeof middleware === 'object';
+    const m = {
+      name    : this.stack.size,
+      args    : o && typeof Array.isArray( o.args ) ? o.args : [],
+      function: o && typeof o.function === 'function' ? o.function : middleware
+    };
+
+    this.stack.set( m.name, m );
+  }
 
   route( a, b, c ) {
     this.routes.push({
@@ -53,16 +65,16 @@ module.exports = class KirbeServer {
         }
       };
 
-      let currentExt = 0;
-      const nextExt = () => {
-        if ( this.extensions.length >= currentExt + 1 ) {
-          currentExt++;
-					this.extensions[ currentExt -1 ]( request, response, nextExt );
-        } else start();
+      let currentMiddleware  = 0;
+      const renderMiddleware = () => {
+        if( this.stack.size >= currentMiddleware +1 ) {
+          currentMiddleware++;
+          const middleware = this.stack.get( currentMiddleware - 1 );
+          middleware.function( request, response, renderMiddleware );
+        }else start();
       };
-
-      nextExt();
-    });
+      renderMiddleware();
+     });
   }
 
   listen( a, b, c ) {

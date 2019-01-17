@@ -30,7 +30,7 @@ $ npm i kirbe # Install w/ NPM
 #### Start a HTTP(s) server on port 8080 and add some routes
 ```js
 const kirbe = require( 'kirbe' ); // Define kirbe
-const app = new kirbe(); // Make your kirbe client
+const app = new kirbe(); // Make your kirbe instance
 
 app.route( '/bear', 'GET', ( req, res ) => res.status( 200 ).body({ 'bear': 'cop' }) );
 app.route( ( req, res ) => res.status( 404 ).body( 'Error: Content not found!' ).end() );
@@ -46,18 +46,20 @@ const https = require( 'https' ); // This should be at the top of your code
 https.createServer( app.externalHandler ).listen( 8080 );
 ```
 
-## Default extensions ( [/extensions](extensions) )
+## Default extensions ( [/model/middleware](model/middleware) )
 #### Static
-> Host static files on your website
-
+Host static files on your website
 ##### Usage
 ```js
 const path  = require( 'path' ); // Define path
 const kirbe = require( 'kirbe' ); // Define kirbe
-const app = new kirbe(); // Make your kirbe client
+const app = new kirbe(); // Make your kirbe instance
 
 app.use( kirbe.static( path.join( __dirname, 'static' ) ) );
 ```
+
+### Creating your own
+If you want to add your own extension/middleware, you can either create your own module or add it to the [/model/middleware](model/middleware) and then create a pull request!
 
 ### Why use kirbe?
 Kirbe is a lightweight and fast HTTP server library, especially comparing to express and connect which are around 1mb in size with multiple dependencies. If you want any features that aren't inside of Kirbe yet, you can open an issue or pull request.

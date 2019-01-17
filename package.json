@@ -10,7 +10,8 @@
     "index.js",
     "model",
     "extensions",
-    "LICENSE"
+    "LICENSE",
+    "fake_node_modules"
   ],
   "bugs": {
     "url": "https://www.github.com/PassTheWessel/kirbe/issues"
@@ -32,6 +33,6 @@
     "lightweight"
   ],
   "devDependencies": {
-    "wumpfetch": "^0.0.4"
+    "wumpfetch": "^0.0.5"
   }
 }
