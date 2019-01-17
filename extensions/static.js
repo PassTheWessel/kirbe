@@ -1,8 +1,7 @@
-const fs                = require( 'fs' );
-const url               = require( 'url' );
-const { join, extname } = require( 'path' );
+const { createReadStream, readFileSync, readFile, stat } = require( 'fs' );
+const { join, extname }                                  = require( 'path' );
 
-const mimes = JSON.parse( fs.readFileSync( join( __dirname, 'mimes.json' ) ) );
+const mimes = JSON.parse( readFileSync( join( __dirname, 'mimes.json' ) ) );
 
 module.exports = ( baseDir, indexFile ) => {
   if (!baseDir) throw new Error('The argument "baseDir" is required for the extension "kirbe:static"');
@@ -22,7 +21,7 @@ module.exports = ( baseDir, indexFile ) => {
       if( stats.isFile() ) {
         stats.mtime.setMilliseconds( 0 );
 				if ( stats.mtime <= new Date( req.headers[ 'if-modified-since' ] ) ) res.status( 304 ).end();
-				else fs.createReadStream( filePath ).pipe( res.status( 200 ).coreRes );
+				else createReadStream( filePath ).pipe( res.status( 200 ).coreRes );
       } else {
         if ( req.parsedUrl.pathname.charAt( req.parsedUrl.pathname.length -1 ) !== '/' ) {
 					res.status(302).header({ 'Location': `${req.parsedUrl.pathname}/` }).end();
@@ -32,7 +31,7 @@ module.exports = ( baseDir, indexFile ) => {
         requestedPath = join( filePath, indexFile );
 				requestedExt  = extname( requestedPath );
 
-				fs.readFile( requestedPath, ( err, data ) => {
+				readFile( requestedPath, ( err, data ) => {
 					if (err) next();
 					else {
 						res.body( data ).status(200).header({
