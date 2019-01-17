@@ -6,7 +6,7 @@ const mimes = JSON.parse( readFileSync( join( __dirname, 'mimes.json' ) ) );
 module.exports = ( baseDir, indexFile ) => {
   if (!baseDir) throw new Error('The argument "baseDir" is required for the extension "kirbe:static"');
   
-  indexFile = typeof indexFile === 'string' ? indexFile : 'index.html'
+  indexFile = typeof indexFile === 'string' ? indexFile : 'index.html';
   return( req, res, next ) => {
     if( req.method !== 'GET' ) { next(); return; }
 
