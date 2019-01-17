@@ -15,7 +15,7 @@ module.exports = ( baseDir, indexFile ) => {
     
     const filePath = join( baseDir, requestedPath );
 
-    fs.stat( filePath, ( err, stats ) => {
+    stat( filePath, ( err, stats ) => {
       if( err ) { next(); return; }
 
       if( stats.isFile() ) {
