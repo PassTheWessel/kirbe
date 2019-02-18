@@ -1,11 +1,11 @@
-<div align="center" >
+<div align="center">
   <br />
   <p>
     <img src="media/kirb.gif" /><h1 style="font-size:107px;">Kirbe</h1>
   </p>
   <br />
   <p>
-    <a href="#"><img src="https://packagephobia.now.sh/badge?p=kirbe" alt="Install Size" /></a>
+    <a href="https://packagephobia.now.sh/result?p=kirbe"><img src="https://packagephobia.now.sh/badge?p=kirbe" alt="Install Size" /></a>
     <a href="https://discord.gg/SV7DAE9"><img src="https://discordapp.com/api/guilds/107131083958538240/embed.png" alt="Discord" /></a>
     <a href="https://www.npmjs.com/package/kirbe"><img src="https://img.shields.io/npm/v/kirbe.svg?maxAge=3600" alt="NPM version" /></a>
     <a href="https://www.npmjs.com/package/kirbe"><img src="https://img.shields.io/npm/dt/kirbe.svg?maxAge=3600" alt="NPM version" /></a>
@@ -18,7 +18,7 @@
 
 > A lightweight and fast Node.js HTTP server library
 
-> [GitHub](https://www.github.com/PassTheWessel/Kirbe) **|** [NPM](https://www.npmjs.com/package/kirbe)
+> [GitHub](https://www.github.com/PassTheWessel/kirbe) **|** [NPM](https://www.npmjs.com/package/kirbe)
 
 ## Installing
 ```sh
@@ -29,21 +29,22 @@ $ npm i kirbe # Install w/ NPM
 ## Usage
 #### Start a HTTP(s) server on port 8080 and add some routes
 ```js
-const kirbe = require( 'kirbe' ); // Define kirbe
-const app = new kirbe(); // Make your kirbe instance
+const kirbe = require('kirbe'); // Define kirbe
 
-app.route( '/bear', 'GET', ( req, res ) => res.status( 200 ).body({ 'bear': 'cop' }) );
-app.route( ( req, res ) => res.status( 404 ).body( 'Error: Content not found!' ).end() );
-app.get( '/kirb', ( req, res ) => {
+const app = new kirbe.Server(); // Make your kirbe instance
+
+app.route('/bear', 'GET', (req, res) => res.status( 200 ).body({ 'bear': 'cop' }) );
+app.route((req, res) => res.status(404).body('Error: Content not found!').end() );
+app.get('/kirb', (req, res) => {
   res.writeHead( 201, { 'test': 'hi' });
   res.end({ 'key': 'hi' });
 });
 
 // HTTP
-app.listen( 8080, () => console.log( 'Listening on port 8080!' ) );
+app.listen(8080, () => console.log('Listening on port 8080!'));
 // HTTPS
-const https = require( 'https' ); // This should be at the top of your code
-https.createServer( app.externalHandler ).listen( 8080 );
+const https = require('https'); // This should be at the top of your code
+https.createServer(app.externalHandler).listen(8080);
 ```
 
 ## Default extensions ( [/model/middleware](model/middleware) )
@@ -51,11 +52,12 @@ https.createServer( app.externalHandler ).listen( 8080 );
 Host static files on your website
 ##### Usage
 ```js
-const path  = require( 'path' ); // Define path
-const kirbe = require( 'kirbe' ); // Define kirbe
+const path  = require('path'); // Define path
+const kirbe = require('kirbe'); // Define kirbe
+
 const app = new kirbe(); // Make your kirbe instance
 
-app.use( kirbe.static( path.join( __dirname, 'static' ) ) );
+app.use(kirbe.static(path.join(__dirname, 'static')));
 ```
 
 ### Creating your own
