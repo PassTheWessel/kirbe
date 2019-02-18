@@ -10,7 +10,7 @@ module.exports = (baseDir, indexFile) => {
   return(req, res, next) => {
     if (req.method !== 'GET') { next(); return; }
 
-    let requestedPath = req.parsedUrl.pathname.replace( /\/.\.\//g, '' );
+    let requestedPath = req.parsedUrl.pathname.replace(/\/.\.\//g, '');
     let requestedExt  = extname(requestedPath);
     
     const filePath = join(baseDir, requestedPath ;
@@ -18,7 +18,7 @@ module.exports = (baseDir, indexFile) => {
     stat(filePath, (err, stats) => {
       if (err ) { next(); return; }
 
-      if (stats.isFile())  {
+      if (stats.isFile()) {
         stats.mtime.setMilliseconds(0);
 	if (stats.mtime <= new Date(req.headers['if-modified-since'])) res.status(304).end();
 	else createReadStream(filePath).pipe(res.status(200).coreRes);
@@ -35,7 +35,7 @@ module.exports = (baseDir, indexFile) => {
 		if (err) next();
 		else {
 		 res.body(data).status(200).header({
-		    'Content-Type': ( mimes.hasOwnProperty(requestedExt) ? mimes[requestedExt] : 'application/octet-stream' ),
+		    'Content-Type': (mimes.hasOwnProperty(requestedExt) ? mimes[requestedExt] : 'application/octet-stream'),
 		    'Last-Modified': stats.mtime.toString()
 		 }).end();
 		}
