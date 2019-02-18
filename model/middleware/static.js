@@ -16,7 +16,7 @@ module.exports = (baseDir, indexFile) => {
     const filePath = join(baseDir, requestedPath ;
 
     stat(filePath, (err, stats) => {
-      if (err ) { next(); return; }
+      if (err) { next(); return; }
 
       if (stats.isFile()) {
         stats.mtime.setMilliseconds(0);
