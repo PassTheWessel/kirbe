@@ -13,7 +13,7 @@ module.exports = (baseDir, indexFile) => {
     let requestedPath = req.parsedUrl.pathname.replace(/\/.\.\//g, '');
     let requestedExt  = extname(requestedPath);
     
-    const filePath = join(baseDir, requestedPath ;
+    const filePath = join(baseDir, requestedPath);
 
     stat(filePath, (err, stats) => {
       if (err) { next(); return; }
