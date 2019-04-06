@@ -2,7 +2,7 @@ module.exports = class KirbeResponse {
   constructor(res) {
     this.coreRes = res;
     this.headers = {};
-
+    
     this.statusCode    = 200;
     this.statusMessage = null;
 
@@ -11,24 +11,20 @@ module.exports = class KirbeResponse {
 
   body(body) {
     if (typeof body === 'object' && !Buffer.isBuffer(body)) {
-	if (!this.headers['content-type']) this.headers['content-type'] = 'application/json';
-        this.data = JSON.stringify(body);
+	  if (!this.headers['content-type']) this.headers['content-type'] = 'application/json'; this.data = JSON.stringify(body);
     } else this.data = body;
-
     return this;
   }
 
   header(a, b) {
     if (typeof a === 'object') Object.keys(a).forEach((v) => this.headers[v.toLowerCase()] = a[v]);
     else this.headers[a.toLowerCase()] = b;
-	  
     return this;
   }
 
   status(code, message) {
     this.statusCode    = code;
     this.statusMessage = message;
-	  
     return this;
   }
 

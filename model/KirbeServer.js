@@ -1,10 +1,9 @@
-const { join }         = require('path');
 const { createServer } = require('http');
 
-const KirbeRequest  = require(join( __dirname, 'KirbeRequest.js'));
-const KirbeResponse = require(join( __dirname, 'KirbeResponse.js'));
+const KirbeRequest  = require('./KirbeRequest.js');
+const KirbeResponse = require('./KirbeResponse.js');
 
-const Collection = require( '../fake_node_modules/Collection' );
+const Collection = require('../fake_node_modules/Collection');
 
 const methods = ['GET', 'HEAD', 'POST', 'PUT', 'DELETE', 'CONNECT', 'OPTIONS', 'TRACE', 'PATCH'];
 const isUrl   = (c) => (typeof c === 'string' && !methods.includes(c)) || c instanceof RegExp;
@@ -62,7 +61,7 @@ module.exports = class KirbeServer {
           }
 
           current.handler( request, response );
-	  break;
+	        break;
         }
       };
 

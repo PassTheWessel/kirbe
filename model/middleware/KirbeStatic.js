@@ -20,27 +20,24 @@ module.exports = (baseDir, indexFile) => {
 
       if (stats.isFile()) {
         stats.mtime.setMilliseconds(0);
-	if (stats.mtime <= new Date(req.headers['if-modified-since'])) res.status(304).end();
-	else createReadStream(filePath).pipe(res.status(200).coreRes);
+	      if (stats.mtime <= new Date(req.headers['if-modified-since'])) res.status(304).end();
+      	else createReadStream(filePath).pipe(res.status(200).coreRes);
       } else {
-        if (req.parsedUrl.pathname.charAt(req.parsedUrl.pathname.length -1 ) !== '/') {
-	   res.status(302).header({'Location': `${req.parsedUrl.pathname}/`}).end();
-	   return;
-        }
-        
-        requestedPath = join(filePath, indexFile);
-	requestedExt  = extname(requestedPath);
+        if (req.parsedUrl.pathname.charAt(req.parsedUrl.pathname.length -1 ) !== '/') return res.status(302).header({'Location': `${req.parsedUrl.pathname}/`}).end();
+      
+      requestedPath = join(filePath, indexFile);
+	    requestedExt  = extname(requestedPath);
 
-	readFile(requestedPath, (err, data) => {
-		if (err) next();
-		else {
-		 res.body(data).status(200).header({
-		    'Content-Type': (mimes.hasOwnProperty(requestedExt) ? mimes[requestedExt] : 'application/octet-stream'),
-		    'Last-Modified': stats.mtime.toString()
-		 }).end();
-		}
-	});
-      }
-    });
-  };
+    readFile(requestedPath, (err, data) => {
+		  if (err) next();
+		  else {
+		   res.body(data).status(200).header({
+		      'Content-Type': (mimes.hasOwnProperty(requestedExt) ? mimes[requestedExt] : 'application/octet-stream'),
+		      'Last-Modified': stats.mtime.toString()
+		   }).end();
+		  }
+	  });
+   }
+  });
+ };
 };
